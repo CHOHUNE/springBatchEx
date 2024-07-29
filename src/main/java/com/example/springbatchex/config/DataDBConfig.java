@@ -28,12 +28,13 @@ public class DataDBConfig {
 
     @Bean
     public LocalContainerEntityManagerFactoryBean dataEntityManager() {
+
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+
         em.setDataSource(dataDBSource());
         em.setPackagesToScan(new String[] { "com.example.springbatchex.entity" });
 
-        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        em.setJpaVendorAdapter(vendorAdapter);
+        em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
         HashMap<String, Object> properties = new HashMap<>();
         properties.put("hibernate.hbm2ddl.auto", "update");
